@@ -4,8 +4,10 @@
 }
 
 footer{
-    height: 50px;
-    background-color: #f5f5f5;
+    height: 70px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
 }
 
 footer p{
@@ -18,6 +20,10 @@ footer p{
 
 #result{
   margin-bottom: 50px;
+}
+
+.navbar-default {
+    background-color: #343a40;
 }
 
 .row{
@@ -87,4 +93,89 @@ footer p{
 
 .buttons-holder .btn{
     margin: 3px;
+}
+
+.navbar {
+    height: 85px !important;
+}
+
+.navbar-form {
+    margin-top: 18px;
+}
+
+.navbar-brand{
+    padding: 8px 15px;
+}
+
+.btn-run {
+    color: #343a40;
+    background-color: #B6D7A8;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-run:hover {
+    color: #fff;
+    background-color:darkgreen;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-reset {
+    color: #343a40;
+    background-color: #EA9999;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-reset:hover {
+    color: #fff;
+    background-color:darkred;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-export {
+    color: #343a40;
+    background-color: #FFE599;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-export:hover {
+    color: #fff;
+    background-color:darkgoldenrod;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-primary {
+    color: #343a40;
+    background-color: #FFE599;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color:darkgoldenrod;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-permalink {
+    color: #343a40;
+    background-color: #A2DBFF;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-permalink:hover {
+    color: #fff;
+    background-color: #4B7A97;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-fullscreen {
+    color: #343a40;
+    background-color: #e7e7e7;
+    border-color: #333;
+font-weight: bold;
+}
+.btn-fullscreen:hover {
+    color: #fff;
+    background-color: #a0a0a0;
+    border-color: #333;
+font-weight: bold;
 }
