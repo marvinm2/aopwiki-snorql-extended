@@ -14,6 +14,11 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+COPY ./load.sh /load.sh
+
+RUN chmod 755 /load.sh
+RUN chmod +x /load.sh
+
 ENV PATH /usr/local/apache2/bin:$PATH
 
 VOLUME /usr/local/apache2/htdocs
