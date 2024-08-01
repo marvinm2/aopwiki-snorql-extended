@@ -1,6 +1,6 @@
 var _endpoint = "https://aopwiki.rdf.bigcat-bioinformatics.org/sparql/";
 var _examples_repo = "https://github.com/marvinm2/AOPWikiSNORQL";
-var _defaultGraph = "http://aopwiki.org/";
+var _defaultGraph = "";
 var _namespaces = snorql_namespacePrefixes;
 
 var _poweredByLink = 'https://github.com/ammar257ammar/snorql-extended';
