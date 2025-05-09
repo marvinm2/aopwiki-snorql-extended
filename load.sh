@@ -12,7 +12,7 @@ if [ $# -ne 2 ]; then
     echo "Wrong number of arguments. Correct usage: \"load [log_file] [virtuoso_password]\""
 else
 
-    VAD=/data
+    VAD=data
     #data_file=${args[0]}
     #graph_uri=${args[1]}
     LOGFILE=${args[0]}
@@ -29,6 +29,8 @@ else
     reset="RDF_GLOBAL_RESET();"
     cleanup1="DELETE FROM load_list WHERE ll_graph = 'http://aopwiki.org/';"
     cleanup2="DELETE FROM load_list WHERE ll_graph = 'servicedescription';"
+    cleanup3="DELETE FROM DB.DBA.SYS_XML_PERSISTENT_NS_DECL WHERE NS_PREFIX = 'go';"
+    setupgo1="INSERT INTO DB.DBA.SYS_XML_PERSISTENT_NS_DECL (NS_PREFIX, NS_URL) VALUES ('go', 'http://purl.obolibrary.org/obo/GO_');"
     logenable2="log_enable(2);"
     prefix1="DB.DBA.XML_SET_NS_DECL ('dc', 'http://purl.org/dc/elements/1.1/',2);"
     prefix2="DB.DBA.XML_SET_NS_DECL ('dcterms', 'http://purl.org/dc/terms/',2);"
@@ -94,6 +96,8 @@ else
 	    $reset
             $cleanup1
             $cleanup2
+            $cleanup3
+            $setupgo1
             $logenable2
             $prefix1
             $prefix2
