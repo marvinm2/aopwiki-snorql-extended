@@ -35,6 +35,10 @@ jQuery(document).ready(function() {
             var queryText = getPrefixes() + query;
 
             var queryEncoded = "?q="+encodeURIComponent(query);
+            var endpoint = jQuery("#endpoint").val();
+            if (endpoint && endpoint !== _endpoint) {
+                queryEncoded += "&endpoint=" + encodeURIComponent(endpoint);
+            }
             var url = window.location.href.split('?')[0] + queryEncoded;
 
             window.history.replaceState(null, "", url);
@@ -175,6 +179,10 @@ jQuery(document).ready(function() {
 	    query = query.trim()
 
             query = "?q="+encodeURIComponent(query);
+            var endpoint = jQuery("#endpoint").val();
+            if (endpoint && endpoint !== _endpoint) {
+                query += "&endpoint=" + encodeURIComponent(endpoint);
+            }
 
             var url = window.location.href.split('?')[0] + query;
 
