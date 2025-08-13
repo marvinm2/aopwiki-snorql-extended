@@ -43,14 +43,33 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+function getConfigValue(key, elementId, defaultValue) {
+    // Priority: URL parameter > cookie > default value
+    var urlParam = findGetParameter(key);
+    if (urlParam != null) {
+        return urlParam;
+    }
+    
+    var cookieValue = getCookie(key);
+    if (cookieValue != "") {
+        return cookieValue;
+    }
+    
+    return defaultValue;
+}
+
+function setConfigValue(key, value) {
+    setCookie(key, value);
+}
+
 function changeEndpoint() {
     var newEp = document.getElementById("endpoint").value;
-    setCookie("endpoint", newEp);
+    setConfigValue("endpoint", newEp);
 }
 
 function changeExamplesRepo() {
     var newEx = document.getElementById("examples-repo").value;
-    setCookie("examplesrepo", newEx);
+    setConfigValue("examplesrepo", newEx);
 }
 
 function getPrefixes(){
@@ -223,25 +242,15 @@ function fetchExamples(suffix="") {
 
 function start(){
 
-    var getvar_endpoint = findGetParameter("endpoint");
-    var ep = getCookie('endpoint');
-    
-    if (getvar_endpoint != null) {
-        document.getElementById("endpoint").value = getvar_endpoint;
-    } else if (ep != ""){
-        _endpoint = ep;
-        document.getElementById('endpoint').value = ep;
-    }else{
-        document.getElementById('endpoint').value = _endpoint;
-    }
+    // Load endpoint configuration with unified precedence
+    var endpoint = getConfigValue("endpoint", "endpoint", _endpoint);
+    _endpoint = endpoint;
+    document.getElementById('endpoint').value = endpoint;
 
-    var ex = getCookie('examplesrepo');
-    if (ex != "") {
-        _examples_repo = ex;
-        document.getElementById('examples-repo').value = ex;
-    }else{
-        document.getElementById('examples-repo').value = _examples_repo;
-    }
+    // Load examples repo configuration with unified precedence  
+    var examplesRepo = getConfigValue("examplesrepo", "examples-repo", _examples_repo);
+    _examples_repo = examplesRepo;
+    document.getElementById('examples-repo').value = examplesRepo;
 
     fetchExamples();
     fetchExamples("-fs");
