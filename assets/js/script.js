@@ -34,11 +34,7 @@ jQuery(document).ready(function() {
             var query = editor.getDoc().getValue();
             var queryText = getPrefixes() + query;
 
-            var queryEncoded = "?q="+encodeURIComponent(query);
-            var endpoint = jQuery("#endpoint").val();
-            if (endpoint && endpoint !== _endpoint) {
-                queryEncoded += "&endpoint=" + encodeURIComponent(endpoint);
-            }
+            var queryEncoded = "?q="+encodeURIComponent(query)+"&endpoint="+encodeURIComponent(jQuery("#endpoint").val().trim());
             var url = window.location.href.split('?')[0] + queryEncoded;
 
             window.history.replaceState(null, "", url);
@@ -177,17 +173,11 @@ jQuery(document).ready(function() {
             var query = editor.getDoc().getValue();
             var queryText = getPrefixes() + query;
 	    query = query.trim()
-
-            query = "?q="+encodeURIComponent(query);
-            var endpoint = jQuery("#endpoint").val();
-            if (endpoint && endpoint !== _endpoint) {
-                query += "&endpoint=" + encodeURIComponent(endpoint);
-            }
+            query = "?q="+encodeURIComponent(query)+"&endpoint="+encodeURIComponent(jQuery("#endpoint").val().trim());
 
             var url = window.location.href.split('?')[0] + query;
 
             var accessToken = "b0021fe4839aefbc4e7967b3578443d9ea6e89bf";
-
             var params = {
                 "long_url" : url.trim()
             };

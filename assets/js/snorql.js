@@ -49,19 +49,18 @@ function getConfigValue(key, elementId, defaultValue) {
     if (urlParam != null) {
         return urlParam;
     }
-    
+
     var cookieValue = getCookie(key);
     if (cookieValue != "") {
         return cookieValue;
     }
-    
+
     return defaultValue;
 }
 
 function setConfigValue(key, value) {
     setCookie(key, value);
 }
-
 function changeEndpoint() {
     var newEp = document.getElementById("endpoint").value;
     setConfigValue("endpoint", newEp);
