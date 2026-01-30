@@ -3,8 +3,8 @@ var _examples_repo = "https://github.com/marvinm2/AOPWikiSNORQL";
 var _defaultGraph = "";
 var _namespaces = snorql_namespacePrefixes;
 
-var _poweredByLink = 'https://github.com/ammar257ammar/snorql-extended';
-var _poweredByLabel = 'Snorql - Extended Edition';
+var _poweredByLink = 'https://github.com/marvinm2/aopwiki-snorql-extended';
+var _poweredByLabel = 'AOP-Wiki SNORQL';
 
 var _showLiteralType = false;
 
@@ -269,13 +269,28 @@ function doQuery(url, sparql, callback) {
     service.setRequestHeader('Accept', 'application/sparql-results+json,*/*');
     service.setOutput('json');
 
+    // Show loading spinner
+    if (typeof showSpinner === 'function') {
+        showSpinner();
+    }
+
     busy = document.createElement('p');
     busy.className = 'busy';
     busy.appendChild(document.createTextNode('Executing query ...'));
     setResult(busy);
     service.query(sparql, {
-            success: callback,
-            failure: onFailure
+            success: function(json) {
+                if (typeof hideSpinner === 'function') {
+                    hideSpinner();
+                }
+                callback(json);
+            },
+            failure: function(report) {
+                if (typeof hideSpinner === 'function') {
+                    hideSpinner();
+                }
+                onFailure(report);
+            }
     });
 }
 

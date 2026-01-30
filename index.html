@@ -72,7 +72,7 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-md-12 buttons-holder">		
+					<div class="col-md-12 buttons-holder">
 						<input id="query-button" type="button" class="btn btn-run" value="Query" />
 						<input id="reset-button" type="button" class="btn btn-reset" value="Reset" />
 						<input id="export-csv" type="button" class="btn btn-export" value="Export CSV" />
@@ -81,6 +81,7 @@
 						<input id="generate-permalink" type="button" class="btn btn-permalink" value="Get Permalink" />
 						<input id="enter-fullscreen" type="button" class="btn btn-fullscreen" value="Fullscreen Mode" />
 						<input id="show-prefixes" type="button" class="btn btn-fullscreen" value="Show Prefixes" />
+						<input id="show-shortcuts" type="button" class="btn btn-fullscreen" value="?" title="Keyboard Shortcuts" />
 					</div>
 				</div>
 				
@@ -125,7 +126,16 @@
 	
 	<footer id="footer" class="footer navbar-fixed-bottom">
 	  <div class="container-fluid">
-		<p>Powered by  <a href="https://aopwiki.org" target="_blank">AOP-Wiki</a> and <a id="poweredby" href="#" target="_blank">AOP-Wiki SNORQL</a> - <a href="cookies.html" target="_blank">Cookie Policy</a> - <a href="https://www.maastrichtuniversity.nl/research/translational-genomics" target="_blank"><img src="assets/images/Logo-TGX.png" width="90" height="55" /></a> See also <a href="https://doi.org/10.1089/aivt.2021.0010" target="_blank">Martens et al. (2022)</a></p>
+		<p>
+		  Powered by <a href="https://aopwiki.org" target="_blank">AOP-Wiki</a> and <a id="poweredby" href="#" target="_blank">AOP-Wiki SNORQL</a> |
+		  <a href="https://github.com/marvinm2/aopwiki-snorql-extended" target="_blank"><span class="glyphicon glyphicon-console"></span> UI Repo</a> |
+		  <a href="https://github.com/marvinm2/AOPWikiRDF" target="_blank"><span class="glyphicon glyphicon-hdd"></span> Data Repo</a> |
+		  <span id="data-freshness" title="Last data update"></span>
+		  <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a> |
+		  <a href="cookies.html" target="_blank">Cookie Policy</a> |
+		  <a href="https://www.maastrichtuniversity.nl/research/translational-genomics" target="_blank"><img src="assets/images/Logo-TGX.png" width="90" height="55" alt="TGX Logo" /></a>
+		  <a href="https://doi.org/10.1089/aivt.2021.0010" target="_blank">Martens et al. (2022)</a>
+		</p>
 	  </div>
 	</footer>
 
@@ -207,11 +217,55 @@
 			<h3 class="modal-title text-primary">SPARQL endpoint's available prefixes</h3>
 		  </div>
 		  <div id="prefixesModalBody" class="modal-body">
-			
+
 		  </div>
 		  <div class="modal-footer">
 		  </div>
 		</div>
+	  </div>
+	</div>
+
+	<div id="shortcutsModal" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h3 class="modal-title text-primary">Keyboard Shortcuts</h3>
+		  </div>
+		  <div class="modal-body">
+			<table class="table table-striped">
+			  <thead>
+				<tr>
+				  <th>Shortcut</th>
+				  <th>Action</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr>
+				  <td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td>
+				  <td>Execute query</td>
+				</tr>
+				<tr>
+				  <td><kbd>F11</kbd></td>
+				  <td>Toggle fullscreen mode</td>
+				</tr>
+				<tr>
+				  <td><kbd>Esc</kbd></td>
+				  <td>Exit fullscreen mode</td>
+				</tr>
+			  </tbody>
+			</table>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<div id="loading-spinner" class="loading-overlay" style="display: none;">
+	  <div class="spinner-container">
+		<div class="spinner"></div>
+		<p>Executing query...</p>
 	  </div>
 	</div>
   </body>

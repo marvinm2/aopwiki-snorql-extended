@@ -3,6 +3,9 @@
 
 jQuery(document).ready(function() {
 
+        // Fetch data freshness from VoID metadata
+        fetchDataFreshness();
+
         var cookieDecision = getCookie('cookieDecision');
 
         if (cookieDecision == "" || cookieDecision == "reject") {
@@ -199,5 +202,80 @@ jQuery(document).ready(function() {
                 console.log(data);
             });
         });
+
+        // Keyboard shortcuts modal
+        jQuery("#show-shortcuts").on("click", function(e) {
+            e.preventDefault();
+            $('#shortcutsModal').modal();
+        });
+
+        // Keyboard shortcuts
+        $(document).on('keydown', function(e) {
+            // Ctrl+Enter to execute query
+            if (e.ctrlKey && e.keyCode === 13) {
+                e.preventDefault();
+                jQuery("#query-button").click();
+            }
+            // F11 to toggle fullscreen (when editor is focused)
+            if (e.keyCode === 122 && editor.hasFocus()) {
+                e.preventDefault();
+                if (editor.getOption("fullScreen")) {
+                    jQuery("#exit-fullscreen").click();
+                } else {
+                    jQuery("#enter-fullscreen").click();
+                }
+            }
+            // Esc to exit fullscreen
+            if (e.keyCode === 27 && editor.getOption("fullScreen")) {
+                jQuery("#exit-fullscreen").click();
+            }
+        });
     });
+
+// Fetch and display data freshness from VoID metadata
+function fetchDataFreshness() {
+    var endpoint = _endpoint;
+    var query = `
+        PREFIX dcterms: <http://purl.org/dc/terms/>
+        PREFIX void: <http://rdfs.org/ns/void#>
+        SELECT ?modified WHERE {
+            ?dataset a void:Dataset ;
+                     dcterms:modified ?modified .
+        } LIMIT 1
+    `;
+
+    $.ajax({
+        url: endpoint,
+        data: { query: query, format: 'application/sparql-results+json' },
+        dataType: 'json',
+        method: 'GET',
+        success: function(data) {
+            if (data.results && data.results.bindings && data.results.bindings.length > 0) {
+                var modified = data.results.bindings[0].modified.value;
+                var date = new Date(modified);
+                var formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                $('#data-freshness').html('<span class="glyphicon glyphicon-time"></span> Data: ' + formattedDate + ' | ');
+            }
+        },
+        error: function() {
+            // Silently fail - don't show anything if the query fails
+            $('#data-freshness').html('');
+        }
+    });
+}
+
+// Show loading spinner
+function showSpinner() {
+    $('#loading-spinner').show();
+}
+
+// Hide loading spinner
+function hideSpinner() {
+    $('#loading-spinner').hide();
+}
+
 })(jQuery);
