@@ -131,6 +131,14 @@ See `assets/js/namespaces.js` for the complete list.
 - [AOPWikiSNORQL](https://github.com/marvinm2/AOPWikiSNORQL) - SPARQL query examples
 - [SNORQL Extended](https://github.com/ammar257ammar/snorql-extended) - Upstream SNORQL project
 
+## Maintainers
+
+- **Lead maintainer:** Marvin Martens — Department of Translational Genomics, Maastricht University — [ORCID 0000-0003-2230-0840](https://orcid.org/0000-0003-2230-0840)
+- **Backup maintainer:** Egon Willighagen — Department of Translational Genomics, Maastricht University — [ORCID 0000-0001-7542-0286](https://orcid.org/0000-0001-7542-0286)
+
+For questions, bug reports, and feature requests please open a [GitHub Issue](https://github.com/marvinm2/aopwiki-snorql-extended/issues).
+
 ## License
 
-This project is based on [SNORQL Extended](https://github.com/ammar257ammar/snorql-extended), which builds on the original [SNORQL](https://github.com/kurtjx/SNORQL) concept.
+- **This UI codebase**: GNU General Public License v3.0 (GPL-3.0) — see [`LICENSE`](LICENSE). The codebase derives from [SNORQL Extended](https://github.com/ammar257ammar/snorql-extended), which builds on the original [SNORQL](https://github.com/kurtjx/SNORQL) concept.
+- **Served AOP-Wiki RDF dataset**: Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0) — see the [AOPWikiRDF data licence](https://github.com/marvinm2/AOPWikiRDF/blob/master/data/LICENSE-DATA). Matches the upstream [AOP-Wiki](https://aopwiki.org/) content licence.
